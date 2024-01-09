@@ -1,6 +1,6 @@
 <?php
 
-include 'Product.php';
+include_once 'Product.php';
 
 $db = new PDO(
     'mysql:host=localhost;dbname=draft-shop;charset=utf8',
