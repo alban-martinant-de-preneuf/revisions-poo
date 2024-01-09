@@ -237,4 +237,31 @@ class Product
             new DateTime($result['updated_at'])
         );
     }
+
+    /**
+     *  Get a product by its id
+     * @param integer $id
+     * @return  Product|false
+     */
+    public static function findOneById(int $id): Product|false
+    {
+        $db = DbConnect::getDb();
+        $query = $db->prepare('SELECT * FROM product WHERE id = :id');
+        $query->execute(['id' => $id]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if (!$result) {
+            return false;
+        }
+        return new Product(
+            $result['id'],
+            $result['name'],
+            json_decode($result['photos']),
+            $result['price'],
+            $result['description'],
+            $result['quantity'],
+            new DateTime($result['created_at']),
+            new DateTime($result['updated_at']),
+            $result['category_id']
+        );
+    }
 }
