@@ -16,7 +16,7 @@ class Electronic extends Product
      * @param ?DateTime $updatedAt
      * @param ?integer $categoryId
      * @param ?string $brand
-     * @param ?int $warantly_fee
+     * @param ?int $warrantly_fee
      */
     public function __construct(
         ?int $id,
@@ -29,7 +29,7 @@ class Electronic extends Product
         ?DateTime $updatedAt,
         ?int $categoryId,
         private ?string $brand,
-        private ?int $warantly_fee
+        private ?int $warrantly_fee
     ) {
         parent::__construct(
             $id,
@@ -43,7 +43,7 @@ class Electronic extends Product
             $categoryId
         );
         $this->brand = $brand;
-        $this->warantly_fee = $warantly_fee;
+        $this->warrantly_fee = $warrantly_fee;
     }
 
     /**
@@ -56,12 +56,12 @@ class Electronic extends Product
     }
 
     /**
-     * Get the warantly_fee of the product
+     * Get the warrantly_fee of the product
      * @return  ?int
      */
     public function getWarantly_fee(): ?int
     {
-        return $this->warantly_fee;
+        return $this->warrantly_fee;
     }
 
     /**
@@ -76,13 +76,13 @@ class Electronic extends Product
     }
 
     /**
-     * Set the warantly_fee of the product
-     * @param  ?int  $warantly_fee
+     * Set the warrantly_fee of the product
+     * @param  ?int  $warrantly_fee
      * @return  self
      */
-    public function setWarantly_fee(?int $warantly_fee): self
+    public function setWarantly_fee(?int $warrantly_fee): self
     {
-        $this->warantly_fee = $warantly_fee;
+        $this->warrantly_fee = $warrantly_fee;
         return $this;
     }
 
@@ -91,7 +91,7 @@ class Electronic extends Product
      * @param integer $id
      * @return Electronic|false
      */
-    public static function findById(int $id): Electronic|false
+    public static function findOneById(int $id): Electronic|false
     {
         $db = DbConnect::getDb();
         $query = $db->prepare(
@@ -115,7 +115,7 @@ class Electronic extends Product
             new DateTime($result['updated_at']),
             $result['category_id'],
             $result['brand'],
-            $result['warantly_fee']
+            $result['warrantly_fee']
         );
     }
 
@@ -148,7 +148,7 @@ class Electronic extends Product
                 new DateTime($result['updated_at']),
                 $result['category_id'],
                 $result['brand'],
-                $result['warantly_fee']
+                $result['warrantly_fee']
             );
         }
         return $electronics;
@@ -164,13 +164,13 @@ class Electronic extends Product
         $db = DbConnect::getDb();
         try {
             $query = $db->prepare(
-                'INSERT INTO electronic (product_id, brand, warantly_fee)
-                VALUES (:product_id, :brand, :warantly_fee)'
+                'INSERT INTO electronic (product_id, brand, warrantly_fee)
+                VALUES (:product_id, :brand, :warrantly_fee)'
             );
             $query->execute([
                 ':product_id' => $this->getId(),
                 ':brand' => $this->getBrand(),
-                ':warantly_fee' => $this->getWarantly_fee()
+                ':warrantly_fee' => $this->getWarantly_fee()
             ]);
             return $this;
         } catch (PDOException $e) {
@@ -190,12 +190,12 @@ class Electronic extends Product
         try {
             $query = $db->prepare(
                 'UPDATE electronic
-                SET brand = :brand, warantly_fee = :warantly_fee
+                SET brand = :brand, warrantly_fee = :warrantly_fee
                 WHERE product_id = :product_id'
             );
             $query->execute([
                 ':brand' => $this->getBrand(),
-                ':warantly_fee' => $this->getWarantly_fee(),
+                ':warrantly_fee' => $this->getWarantly_fee(),
                 ':product_id' => $this->getId()
             ]);
             return $this;
