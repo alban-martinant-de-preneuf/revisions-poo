@@ -5,7 +5,7 @@ namespace App\Abstract;
 use App\DbConnect;
 use App\Category;
 
-abstract class Product
+abstract class AbstractProduct
 {
     const DATE_FORMAT = 'Y-m-d H:i:s';
 
@@ -236,21 +236,21 @@ abstract class Product
     /**
      *  Get a product by its id
      * @param integer $id
-     * @return  Product|false
+     * @return  AbstractProduct|false
      */
-    abstract public static function findOneById(int $id): Product|false;
+    abstract public static function findOneById(int $id): AbstractProduct|false;
 
     /**
      * Get all products
-     * @return  Product[]|false
+     * @return  AbstractProduct[]|false
      */
     abstract public static function findAll(): array|false;
 
     /**
      * Register a new product in the database
-     * @return Product|false
+     * @return AbstractProduct|false
      */
-    public function create(): Product|false
+    public function create(): AbstractProduct|false
     {
         $bd = DbConnect::getDb();
         try {
@@ -278,9 +278,9 @@ abstract class Product
 
     /**
      * Update a product in the database
-     * @return Product|false
+     * @return AbstractProduct|false
      */
-    public function update(): Product|false
+    public function update(): AbstractProduct|false
     {
         $db = DbConnect::getDb();
         try {

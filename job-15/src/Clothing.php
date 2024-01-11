@@ -4,9 +4,9 @@ namespace App;
 
 use App\DbConnect;
 use App\Interface\StockableInterface;
-use App\Abstract\Product;
+use App\Abstract\AbstractProduct;
 
-class Clothing extends Product implements StockableInterface
+class Clothing extends AbstractProduct implements StockableInterface
 {
     const DATE_FORMAT = 'Y-m-d H:i:s';
 

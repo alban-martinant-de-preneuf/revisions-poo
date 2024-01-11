@@ -3,10 +3,10 @@
 namespace App;
 
 use App\Interface\StockableInterface;
-use App\Abstract\Product;
+use App\Abstract\AbstractProduct;
 use App\DbConnect;
 
-class Electronic extends Product implements StockableInterface
+class Electronic extends AbstractProduct implements StockableInterface
 {
     /**
      * constructor
